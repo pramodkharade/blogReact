@@ -8,9 +8,10 @@ class Posts extends Component {
     posts: [],
   };
   postSelectedHandler =(id) => {
-    this.setState({
-      selectedPostId: id
+    this.props.history.push({
+      pathname: '/' + id
     });
+  // this.props.history.push('/'+id);
   };
   componentDidMount() {
     axios.get('/posts')
@@ -31,14 +32,22 @@ class Posts extends Component {
   render() {
     const posts = this.state.posts.map((post) => {
       return (
-        <Link to={'/' + post.id} key={post.id}>
-            <Post title={post.title}
+        // <Link to={'/' + post.id} key={post.id}>
+        //     <Post title={post.title}
 
+        // author={post.author}
+        // clicked={() => {
+        //   this.postSelectedHandler(post.id)
+        // }} /> 
+        // </Link>);
+        /*** programatically Route / navigate**/
+        <Post title={post.title}
+        key={post.id}
         author={post.author}
         clicked={() => {
           this.postSelectedHandler(post.id)
-        }} /> 
-        </Link>);
+        }} />
+        );
     });
     return (<section className={Classes.Posts}>
             {posts}
