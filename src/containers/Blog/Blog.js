@@ -14,13 +14,15 @@ class Blog extends Component {
           <nav>
             <ul>
               <li><a href='/'>Home</a></li>
-              <li><a href='/new-posts'>New Post</a></li>
+              <li><a href='/new-post'>New Post</a></li>
             </ul>
           </nav>
         </header>
-                <Route path='/' exact render={() => <Posts/>} />
+                { /* <Route path='/' exact render={() => <Posts/>} />
                 <Route path='/new-posts' exact render={() => <NewPost/>} />
-                
+                 */ }
+                 <Route path="/" component={Posts} exact />
+                 <Route path="/new-post" component={NewPost} exact />
             </div>
       );
   }
