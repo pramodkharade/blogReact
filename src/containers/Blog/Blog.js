@@ -6,7 +6,9 @@ import FullPost from '../FullPost/FullPost';
 import NewPost from '../NewPost/NewPost';
 class Blog extends Component {
 
-
+  state = {
+    auth: true
+  };
 
   render() {
     return (
@@ -32,7 +34,7 @@ class Blog extends Component {
                  */ }
                  <Switch>
                  <Route path="/" component={Posts} exact />
-                 <Route path="/new-post" component={NewPost} exact />
+                 {this.state.auth ? <Route path="/new-post" component={NewPost} exact /> : null}
                  <Route path="/:id" component={FullPost} exact />
                  </Switch>
             </div>
