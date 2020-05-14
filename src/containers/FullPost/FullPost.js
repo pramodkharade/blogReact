@@ -1,15 +1,16 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import './FullPost.css';
+import Classes from './FullPost.module.css';
 
 class FullPost extends Component {
   state = {
     loadedPost: null
   };
-  componentDidUpdate() {
-    if (this.props.id) {
-      if (!this.state.loadedPost || (this.state.loadedPost && this.state.loadedPost.id !== this.props.id)) {
-        axios.get('/posts/' + this.props.id)
+  componentDidMount() {
+    console.log('Calling FullPost:', this.props)
+    if (this.props.match.params.id) {
+      if (!this.state.loadedPost || (this.state.loadedPost && this.state.loadedPost.id !== this.props.match.params.id)) {
+        axios.get('/posts/' + this.props.match.params.id)
           .then((res) => {
             this.setState({
               loadedPost: res.data
@@ -36,10 +37,10 @@ class FullPost extends Component {
     }
     if (this.state.loadedPost) {
       post = (
-        <div className="FullPost">
+        <div className={Classes.FullPost}>
                 <h1>{this.state.loadedPost.title}</h1>
                 <p>{this.state.loadedPost.body}</p>
-                <div className="Edit">
+                <div className={Classes.Edit}>
                     <button onClick={this.deletePostHandler} className="Delete">Delete</button>
                 </div>
             </div>
