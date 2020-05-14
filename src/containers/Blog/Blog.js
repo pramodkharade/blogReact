@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Route, Link } from 'react-router-dom';
+import { Route, NavLink } from 'react-router-dom';
 import Classes from './Blog.module.css';
 import Posts from '../Posts/Posts';
 import NewPost from '../NewPost/NewPost';
@@ -13,10 +13,10 @@ class Blog extends Component {
         <header>
           <nav>
             <ul>
-              <li><Link to='/'>Home</Link></li>
-              <li><Link to={{
+              <li><NavLink to='/' exact activeClassName="my-active">Home</NavLink></li>
+              <li><NavLink to={{
         pathname: '/new-post'
-      }}>New Post</Link></li>
+      }}>New Post</NavLink></li>
             </ul>
           </nav>
         </header>
